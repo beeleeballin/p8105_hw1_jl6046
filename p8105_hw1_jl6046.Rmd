@@ -1,7 +1,38 @@
 ---
 title: "P8105 HW1 jl6046"
+author: "Brian Jo Hsuan Lee"
+date: 2021-09-25
 output: github_document
 ---
+
+```{r}
+library(tidyverse)
+```
+
+
+Create a data frame with 4 varibles and 10 observations
+
+```{r}
+set.seed(33)
+rand_three = sample.int(n=3, size=10, replace=TRUE)
+
+p1_df = tibble(
+  rand_samp = rnorm(10),
+  pos_samp = rand_samp > 0,
+  len_ten_char = 'laundryday',
+  len_ten_fac = factor(rand_three, labels=c("whites", "colors", "delicates"))
+)
+```
+
+Calculate the means of each variable
+
+```{r}
+samp_mean = mean(pull(p1_df, rand_samp))
+pos_samp_mean = mean(pull(p1_df, pos_samp))
+char_mean = mean(pull(p1_df, len_ten_char))
+fac_mean = mean(pull(p1_df, len_ten_fac))
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
