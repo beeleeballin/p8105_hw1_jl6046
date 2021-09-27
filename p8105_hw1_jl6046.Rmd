@@ -88,7 +88,7 @@ ggplot(scatterplot_df, aes(x=bill_len, y=flip_len, color=spec_color)) + geom_poi
 
 Save the scatterplot in the directory as a .png
 
-```{r}
+```{r, warning=FALSE}
 ggsave(
   filename = "bill_v_flippers.png", 
   plot = last_plot()
