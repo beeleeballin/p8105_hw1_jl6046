@@ -74,6 +74,19 @@ flip_mean
 
 The mean flipper length is 200.9 mm among the observed samples, ignoring the missing values. 
 
+Show correlation between penguin bill lengths and flipper lengths using a scatter plot.
+
+```{r, warning=FALSE}
+scatterplot_df = tibble(
+  flip_len = pull(penguins, flipper_length_mm),
+  bill_len = pull(penguins, bill_length_mm),
+  spec_color = pull(penguins, species)
+)
+
+ggplot(scatterplot_df, aes(x=bill_len, y=flip_len, color=spec_color)) + geom_point() + labs(title="The Length Correlation of Bills and Flippers of 3 Penguin Species") + ylab("Flipper Length (mm)") + xlab("Bill Length (mm)") + theme(legend.title = element_blank()) + theme(plot.title = element_text(size=12))
+```
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
