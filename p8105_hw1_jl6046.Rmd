@@ -53,6 +53,26 @@ p1_df %>% add_column(fac_num = as.numeric(pull(p1_df, len_ten_fac)))
 ```
 When logicals are converted to doubles, 'TRUE's' become 1s and 'FALSE's' become 0s, and factors are converted into their assigned indices. Characters, on the other hand, cannot be converted successfully. 
 
+Load 'penguins' data from "palmerpenguins". Check the name and number of variables as well as the number of observations. 
+
+```{r}
+data("penguins", package = "palmerpenguins")
+p2_df_colnames = colnames(penguins)
+p2_df_colnames
+p2_df_obs_size = nrow(penguins)
+p2_df_obs_size
+p2_df_var_size = ncol(penguins)
+p2_df_var_size
+```
+
+'penguins' is a 344 by 8 table, and we're interested in the average length of penguin flippers documented.
+
+```{r}
+flip_mean = mean(pull(penguins, flipper_length_mm), na.rm=TRUE)
+flip_mean
+```
+
+The mean flipper length is 200.9 mm among the observed samples, ignoring the missing values. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
