@@ -5,12 +5,13 @@ date: 2021-09-25
 output: github_document
 ---
 
-```{r}
+Import package 'tidyverse'.
+
+```{r, message=FALSE}
 library(tidyverse)
 ```
 
-
-Create a data frame with 4 varibles and 10 observations
+Create a data frame with 4 varibles and 10 observations.
 
 ```{r}
 set.seed(33)
@@ -22,16 +23,35 @@ p1_df = tibble(
   len_ten_char = 'laundryday',
   len_ten_fac = factor(rand_three, labels=c("whites", "colors", "delicates"))
 )
+
+p1_df
 ```
 
-Calculate the means of each variable
+Calculate the means of each of the 4 variables.
 
-```{r}
+```{r, warning=FALSE}
 samp_mean = mean(pull(p1_df, rand_samp))
+samp_mean
 pos_samp_mean = mean(pull(p1_df, pos_samp))
+pos_samp_mean
 char_mean = mean(pull(p1_df, len_ten_char))
+char_mean
 fac_mean = mean(pull(p1_df, len_ten_fac))
+fac_mean
 ```
+
+Only numeric or logical values could be taken the means of. Therefore, means of nominal values, such as characters and factors, are set to 'Not Available'.
+
+We may understand this outcome by converting logical, character and factors into numeric values:
+
+```{r, results='hide', warning=FALSE}
+p1_df %>% add_column(pos_samp_num = as.numeric(pull(p1_df, pos_samp))
+                     , .after = "pos_samp")
+p1_df %>% add_column(char_num = as.numeric(pull(p1_df, len_ten_char))
+                     , .after = "len_ten_char")
+p1_df %>% add_column(fac_num = as.numeric(pull(p1_df, len_ten_fac)))
+```
+When logicals are converted to doubles, 'TRUE's' become 1s and 'FALSE's' become 0s, and factors are converted into their assigned indices. Characters, on the other hand, cannot be converted successfully. 
 
 
 ```{r setup, include=FALSE}
