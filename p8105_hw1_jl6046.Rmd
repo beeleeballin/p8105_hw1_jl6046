@@ -86,6 +86,15 @@ scatterplot_df = tibble(
 ggplot(scatterplot_df, aes(x=bill_len, y=flip_len, color=spec_color)) + geom_point() + labs(title="The Length Correlation of Bills and Flippers of 3 Penguin Species") + ylab("Flipper Length (mm)") + xlab("Bill Length (mm)") + theme(legend.title = element_blank()) + theme(plot.title = element_text(size=12))
 ```
 
+Save the scatterplot in the directory as a .png
+
+```{r}
+ggsave(
+  filename = "bill_v_flippers.png", 
+  plot = last_plot()
+)
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
